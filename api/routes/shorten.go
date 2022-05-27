@@ -63,7 +63,7 @@ func ShortenURL(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid URL"})
 	}
 
-	//domain erro -> we want to prevent the user using localhost as url to shorten , this can cause infinite loop
+	//domain error -> we want to prevent the user using localhost as url to shorten , this can cause infinite loop
 	if !helpers.RemoveDomainError(body.URL) {
 		return c.Status(fiber.StatusServiceUnavailable).JSON(fiber.Map{"error": "You cannot hack the system"})
 	}
